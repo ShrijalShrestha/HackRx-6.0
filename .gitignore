@@ -1,0 +1,328 @@
+# RAG System - GitIgnore File
+# ============================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# RAG System Specific Files
+# =========================
+
+# Environment variables (contains API keys)
+.env
+.env.local
+.env.development
+.env.production
+*.env
+
+# API Keys and secrets
+config/secrets.yaml
+config/keys.json
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Data files (documents and uploads)
+data/
+uploads/
+documents/
+temp_uploads/
+*.pdf
+*.docx
+*.txt
+*.md
+*.eml
+# Exception: Keep sample/demo files and documentation
+!data/sample/
+!docs/*.md
+!README*.md
+
+# Model cache and downloads
+hf_models_cache/
+models/
+.cache/
+model_downloads/
+*.model
+*.bin
+*.safetensors
+
+# Vector database files
+vector_store/
+embeddings/
+faiss_index/
+chroma_db/
+*.index
+*.pkl
+*.pickle
+
+# Log files
+logs/
+*.log
+*.log.*
+app.log
+rag_system.log
+debug.log
+error.log
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Backup files
+backup/
+*.backup
+*.bak
+*_backup.*
+*_old.*
+*.orig
+app_old.py
+app_enhanced.py
+
+# Development and testing
+test_results/
+test_data/
+playground/
+experiments/
+*.test
+*_test.*
+*_debug.*
+*_example.*
+scratch/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Windows
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.AppleDouble
+.LSOverride
+Icon
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Docker
+Dockerfile.dev
+docker-compose.override.yml
+.dockerignore
+
+# Package managers
+node_modules/
+package-lock.json
+yarn.lock
+.pnp
+.pnp.js
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+db.json
+
+# Configuration overrides
+config/local.json
+config/development.json
+config/production.json
+local_config.py
+
+# Performance and monitoring
+*.prof
+*.pstats
+memory_profiler_*
+
+# Security scans
+.bandit
+safety-report.json
+
+# FastAPI specific
+.pytest_cache/
+test-reports/
+
+# ML/AI specific
+wandb/
+mlruns/
+.mlflow/
+artifacts/
+checkpoints/
+saved_models/
+
+# Jupyter Lab
+.jupyter/
+
+# UV (if using UV package manager)
+uv.lock
+
+# Keep important files (explicit exceptions)
+!requirements.txt
+!pyproject.toml
+!README.md
+!LICENSE
+!.gitignore
+!Dockerfile
+!docker-compose.yml
+!frontend.html

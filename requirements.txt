@@ -1,0 +1,30 @@
+# Core dependencies for the RAG system
+python-dotenv>=1.1.1
+pinecone>=7.3.0
+sentence-transformers>=5.0.0
+
+# FastAPI and web server
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# LangChain ecosystem
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-core>=0.3.0
+langchain-google-genai>=2.0.0
+langchain-pinecone>=0.2.0
+
+# Document processing
+llama-parse>=0.5.0
+pypdf>=5.0.0
+python-docx>=1.1.0
+unstructured>=0.15.0
+unstructured[local-inference]>=0.15.0
+
+# Additional utilities
+numpy>=1.24.0
+transformers>=4.40.0
+torch>=2.0.0
+tiktoken>=0.7.0
+requests>=2.31.0
