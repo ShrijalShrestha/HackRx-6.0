@@ -3,33 +3,33 @@ name = "backend"
 version = "0.1.0"
 description = "Modernized RAG System for document parsing, embedding, and semantic search"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.9"
 dependencies = [
-    "python-dotenv>=1.1.1",
-    "pinecone>=7.3.0",
-    "sentence-transformers>=5.0.0",
-    "fastapi>=0.104.0",
-    "uvicorn[standard]>=0.24.0",
-    "python-multipart>=0.0.6",
-    "langchain>=0.3.0",
-    "langchain-community>=0.3.0",
-    "langchain-core>=0.3.0",
-    "langchain-google-genai>=2.0.0",
-    "langchain-pinecone>=0.2.0",
-    "llama-parse>=0.5.0",
-    "pypdf>=5.0.0",
-    "python-docx>=1.1.0",
-    "unstructured[docx,pdf]>=0.15.0",
-    "numpy>=1.24.0",
-    "transformers>=4.40.0",
-    "torch>=2.0.0",
-    "tiktoken>=0.7.0",
+    "python-dotenv",
+    "pinecone",
+    "sentence-transformers",
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",
+    "langchain",
+    "langchain-community",
+    "langchain-core",
+    "langchain-google-genai",
+    "langchain-pinecone",
+    "llama-parse",
+    "pypdf",
+    "python-docx",
+    "unstructured[docx,pdf]",
+    "numpy",
+    "transformers",
+    "torch",
+    "tiktoken",
 ]
 
 [tool.uv]
 dev-dependencies = [
-    "pytest>=8.0.0",
-    "black>=24.0.0",
-    "flake8>=7.0.0",
-    "mypy>=1.8.0",
+    "pytest",
+    "black",
+    "flake8",
+    "mypy",
 ]
