@@ -73,13 +73,13 @@ uv sync
 python app.py
 ```
 
-### Docker Setup (Optional)
+### Docker Setup 
 ```bash
 # Build Docker image
-docker build -t rag-system .
+docker build -t rag-backend .
 
 # Run container
-docker run -p 8000:8000 --env-file .env rag-system
+docker run -p 8000:8000 --env-file .env rag-backend
 ```
 
 ## 🔧 Configuration
