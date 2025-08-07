@@ -145,7 +145,9 @@ app.add_middleware(
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
-    return FileResponse("frontend.html")
+    return """
+    Server is running!
+    """
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():

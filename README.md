@@ -1,312 +1,331 @@
-# Enhanced RAG System - FastAPI Backend
+# 🤖 SmartQuery-RAG – LLM-Powered Intelligent Retrieval System
 
-A comprehensive Retrieval-Augmented Generation (RAG) system with enhanced metadata handling, document processing, and semantic search capabilities.
+A modern, full-stack Retrieval-Augmented Generation (RAG) system that enables intelligent document search and question-answering capabilities. Built with cutting-edge AI technologies for processing, vectorizing, and querying documents with semantic understanding.
 
-## 🚀 Features
+## 🌟 Overview
 
-### Core Capabilities
-- **Advanced Document Processing**: Multi-format support (PDF, DOCX, TXT, MD, EML) with LlamaParse and community loaders
-- **Enhanced Metadata Handling**: Comprehensive metadata preservation and safe extraction with fallbacks
-- **Semantic Search**: SentenceTransformer embeddings with Pinecone vector database
-- **FastAPI Backend**: RESTful API with automatic documentation and enhanced error handling
-- **Real-time Monitoring**: Health checks, performance metrics, and system statistics
-- **Robust Error Handling**: Graceful degradation and comprehensive logging
+This system combines advanced document processing, semantic search, and large language model capabilities to create an intelligent knowledge retrieval platform. Users can upload documents, process them automatically, and ask natural language questions to get contextual answers backed by relevant source citations.
 
-### Recent Enhancements
-- ✅ **Fixed Metadata Bugs**: Resolved `coverage_type` and `document_section` handling issues
-- ✅ **Enhanced FastAPI Routes**: Added comprehensive upload, query, health, and stats endpoints
-- ✅ **Improved Error Handling**: Safe metadata extraction with fallbacks
-- ✅ **Performance Monitoring**: Added uptime tracking, query statistics, and error rates
-- ✅ **File Management**: Enhanced upload validation, processing statistics, and cleanup utilities
+### 🎯 Key Features
 
-## 📋 API Endpoints
+- **🔍 Intelligent Document Processing**: Support for multiple formats (PDF, DOCX, TXT, MD, EML) with advanced parsing
+- **🧠 Semantic Search**: Vector-based similarity search using state-of-the-art embeddings
+- **💬 Natural Language Q&A**: LLM-powered answer generation with source citations
+- **🌐 Modern Web Interface**: Clean, responsive React frontend with real-time updates
+- **⚡ High-Performance Backend**: FastAPI-based API with comprehensive monitoring
+- **📊 Real-time Analytics**: System health monitoring and performance metrics
+- **🔧 Scalable Architecture**: Modular design supporting easy extensions and scaling
 
-### Document Management
-- `POST /upload` - Upload and process documents with validation
-- `GET /documents` - List processed documents with filtering
-- `DELETE /documents/{doc_name}` - Delete specific document
-- `DELETE /reset` - Reset entire vector store
+## 🏗️ System Architecture
 
-### Search & Query
-- `POST /query` - Process search queries with enhanced metadata
-- `GET /search/similar/{doc_id}` - Find similar documents
-
-### System Monitoring
-- `GET /health` - System health check with performance metrics
-- `GET /stats` - Detailed system statistics
-- `GET /` - Frontend web interface
-
-## 🛠️ Installation & Setup
-
-### Prerequisites
-```bash
-Python 3.8+
-Node.js (for frontend development)
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Frontend      │    │    Backend       │    │   External      │
+│   (React)       │───▶│   (FastAPI)      │───▶│   Services      │
+├─────────────────┤    ├──────────────────┤    ├─────────────────┤
+│ • File Upload   │    │ • Document Proc. │    │ • Pinecone DB   │
+│ • Search UI     │    │ • Vector Store   │    │ • Google Gemini │
+│ • Results View  │    │ • Query Process  │    │ • LlamaParse    │
+│ • System Stats  │    │ • Health Monitor │    │ • HuggingFace   │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
 
-### Environment Variables
-Create a `.env` file in the project root:
+### 🧩 Core Components
+
+#### Backend Components
+- **RAG System Orchestrator** - Coordinates all system components
+- **Document Processor** - Handles parsing and chunking of various document formats
+- **Vector Store Manager** - Manages embeddings and Pinecone integration
+- **Query Processor** - Processes search queries and generates LLM responses
+- **FastAPI Server** - RESTful API with comprehensive endpoints
+
+#### Frontend Components
+- **React Application** - Modern single-page application
+- **Document Upload Interface** - Drag-and-drop file handling
+- **Search Interface** - Natural language query input
+- **Results Display** - Formatted answers with source citations
+- **System Dashboard** - Real-time health and statistics monitoring
+
+## 🛠️ Technology Stack
+
+### Backend Technologies
+- **Python 3.8+** - Core runtime environment
+- **FastAPI** - Modern async web framework
+- **LangChain** - LLM integration and document processing
+- **Pinecone** - Vector database for semantic search
+- **SentenceTransformers** - Text embedding generation
+- **Google Gemini** - Large language model for answer generation
+- **LlamaParse** - Advanced document parsing service
+
+### Frontend Technologies
+- **React 19** - Modern UI library
+- **Vite** - Fast build tool and development server
+- **Tailwind CSS** - Utility-first styling framework
+- **Modern JavaScript** - ES2020+ features
+
+### Infrastructure & Services
+- **Pinecone Vector Database** - Serverless vector storage
+- **Google AI Services** - Gemini LLM API
+- **LlamaCloud** - Document parsing service
+- **Docker** - Containerization support
+
+## 📦 Project Structure
+
+```
+HackRx6.0/
+├── 📁 backend/                 # Python FastAPI backend
+│   ├── 📄 app.py              # Main FastAPI application
+│   ├── 📄 rag_system.py       # Core RAG orchestrator
+│   ├── 📄 document_processor.py # Document parsing & chunking
+│   ├── 📄 vector_store_manager.py # Vector operations
+│   ├── 📄 query_processor.py  # Query processing & LLM
+│   ├── 📄 config.py           # Configuration management
+│   ├── 📄 requirements.txt    # Python dependencies
+│   ├── 📄 Dockerfile          # Container configuration
+│   ├── 📁 data/               # Document storage
+│   └── 📁 hf_models_cache/    # Cached ML models
+├── 📁 frontend/               # React frontend application
+│   ├── 📁 src/
+│   │   ├── 📄 App.jsx         # Main app component
+│   │   ├── 📄 main.jsx        # App entry point
+│   │   └── 📁 components/
+│   │       ├── 📄 RAGSystemUI.jsx # Main interface
+│   │       └── 📁 ui/         # Reusable UI components
+│   ├── 📄 package.json        # Node.js dependencies
+│   ├── 📄 vite.config.js      # Vite configuration
+│   └── 📄 index.html          # HTML template
+└── 📄 README.md               # This file
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+- **Python 3.8+** installed
+- **Node.js 16+** installed
+- **API Keys** for required services:
+  - Pinecone API key
+  - Google AI API key
+  - LlamaCloud API key (optional)
+
+### 1. Environment Setup
+
+Create a `.env` file in the backend directory:
 ```env
 # Required API Keys
 PINECONE_API_KEY=your_pinecone_api_key_here
-LLAMA_CLOUD_API_KEY=your_llama_cloud_api_key_here
 GOOGLE_API_KEY=your_google_api_key_here
+LLAMA_CLOUD_API_KEY=your_llama_cloud_api_key_here
 
-# Optional Configuration
-CHUNK_SIZE=1000
-CHUNK_OVERLAP=200
-MAX_FILE_SIZE_MB=50
-TOP_K_DOCUMENTS=5
+# Configuration (optional)
+PINECONE_REGION=us-east-1
+CHUNK_SIZE=512
+CHUNK_OVERLAP=20
 ```
 
-### Installation
+### 2. Backend Setup
+
 ```bash
-# Clone and navigate to project
+# Navigate to backend directory
 cd backend
 
-# Install dependencies
+# Install Python dependencies
 pip install -r requirements.txt
-# OR using uv (recommended)
+# Or using uv (recommended)
 uv sync
 
-# Run the application
+# Start the FastAPI server
 python app.py
 ```
 
-### Docker Setup 
-```bash
-# Build Docker image
-docker build -t rag-backend .
+The backend will start at `http://localhost:8000`
 
-# Run container
-docker run -p 8000:8000 --env-file .env rag-backend
+### 3. Frontend Setup
+
+```bash
+# Navigate to frontend directory (in a new terminal)
+cd frontend
+
+# Install Node.js dependencies
+npm install
+
+# Start the development server
+npm run dev
 ```
 
-## 🔧 Configuration
+The frontend will start at `http://localhost:5173`
 
-### Document Processing
-- **Chunk Size**: Text chunk size for embedding (default: 1000)
-- **Chunk Overlap**: Overlap between chunks (default: 200)
-- **Supported Formats**: PDF, DOCX, TXT, MD, EML
-- **Max File Size**: Configurable upload limit (default: 50MB)
+### 4. Using the System
 
-### Vector Storage
-- **Database**: Pinecone (serverless)
-- **Embedding Model**: SentenceTransformer all-MiniLM-L6-v2 (384 dimensions)
-- **Similarity Metric**: Cosine similarity
-- **Index Configuration**: Auto-scaling serverless spec
+1. **Upload Documents**: Drop files or click to upload (PDF, DOCX, TXT, MD, EML)
+2. **Process Documents**: System automatically processes and vectorizes content
+3. **Ask Questions**: Use natural language queries to search your documents
+4. **Review Answers**: Get comprehensive answers with source citations
 
-### LLM Integration
-- **Provider**: Google Gemini
-- **Model**: gemini-pro (configurable)
-- **Temperature**: 0.1 (for consistent responses)
-- **Max Tokens**: 1024
+## 📊 API Documentation
 
-## 📊 Usage Examples
+### Core Endpoints
 
-### Upload Documents
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/` | Web interface |
+| `GET` | `/health` | System health check |
+| `GET` | `/stats` | System statistics |
+| `POST` | `/upload` | Upload documents |
+| `POST` | `/upload-urls` | Process documents from URLs |
+| `POST` | `/query` | Search and query documents |
+
+### Example API Usage
+
+**Upload Documents:**
 ```bash
 curl -X POST "http://localhost:8000/upload" \
-  -F "files=@document1.pdf" \
-  -F "files=@document2.docx"
+  -F "files=@document.pdf"
 ```
 
-### Query Documents
+**Query Documents:**
 ```bash
 curl -X POST "http://localhost:8000/query" \
   -H "Content-Type: application/json" \
   -d '{
-    "query": "What are the key findings?",
-    "max_sources": 5,
-    "include_sources": true,
-    "include_metadata": true
+    "query": "What are the main points?",
+    "max_results": 5,
+    "score_threshold": 0.1
   }'
 ```
 
-### Check System Health
+**Check System Health:**
 ```bash
 curl "http://localhost:8000/health"
 ```
 
-## 🔍 Enhanced Metadata Features
+## ⚙️ Configuration Options
 
-### Document Metadata
-- `source`: Original filename
-- `file_path`: Full file path
-- `file_type`: File extension
-- `parser`: Parser used (llama_parse or community_loader)
-- `chunk_id`: Unique chunk identifier
-- `coverage_type`: Document coverage classification
-- `document_section`: Section within document
-- `word_count`: Number of words in chunk
-- `processing_time`: Time taken to process
+### Document Processing
+- **Chunk Size**: Text chunk size for embeddings (default: 512)
+- **Chunk Overlap**: Overlap between chunks (default: 20)
+- **Supported Formats**: PDF, DOCX, TXT, MD, EML
+- **Max File Size**: Upload limit (configurable)
 
-### Safe Metadata Extraction
-The system now includes robust metadata handling:
-```python
-def safe_get(key: str, default: Any = ""):
-    """Safely get metadata value with fallback."""
-    try:
-        value = metadata.get(key, default)
-        return value if value is not None else default
-    except (AttributeError, TypeError):
-        return default
+### Search & Retrieval
+- **Top K Documents**: Number of results to retrieve (default: 5)
+- **Similarity Threshold**: Minimum similarity score (default: 0.1)
+- **Embedding Model**: SentenceTransformer model for embeddings
+- **LLM Temperature**: Response randomness control (default: 0.1)
+
+### System Performance
+- **Vector Database**: Pinecone serverless with auto-scaling
+- **Embedding Dimensions**: 384 (all-MiniLM-L6-v2 model)
+- **Batch Processing**: Optimized for document chunking and vectorization
+
+## 🐳 Docker Deployment
+
+### Build and Run
+```bash
+# Build Docker image
+docker build -t rag-system ./backend
+
+# Run with environment file
+docker run -p 8000:8000 --env-file ./backend/.env rag-system
 ```
 
-## 📈 Performance Monitoring
+### Docker Compose (Optional)
+Create a `docker-compose.yml` for full stack deployment:
+```yaml
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+  
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+```
+
+## 📈 Performance & Monitoring
+
+### System Metrics
+- **Document Processing**: Upload and parsing success rates
+- **Query Performance**: Response times and accuracy
+- **Resource Usage**: Memory and CPU utilization
+- **Health Monitoring**: Component status and error tracking
 
 ### Health Check Response
 ```json
 {
   "status": "healthy",
-  "timestamp": "2025-01-31T10:30:00Z",
-  "system_ready": true,
-  "components": {
-    "rag_system": true,
-    "vector_store": true,
-    "embeddings": true,
-    "llm": true
-  },
-  "performance_metrics": {
-    "uptime_hours": 24.5,
-    "total_queries": 150,
-    "total_documents": 25,
-    "error_rate": 0.02
-  }
-}
-```
-
-### Statistics Response
-```json
-{
-  "system_ready": true,
-  "total_documents": 25,
+  "uptime_seconds": 86400,
+  "documents_processed": 25,
+  "queries_processed": 150,
   "total_chunks": 487,
-  "total_vectors": 487,
-  "index_name": "test-index",
-  "embedding_model": "all-MiniLM-L6-v2",
-  "last_updated": "2025-01-31T10:30:00Z"
+  "system_ready": true
 }
 ```
 
-## 🐛 Bug Fixes Applied
+## 🔧 Development & Contributing
 
-### Metadata Handling Issues
-- **Problem**: `'dict' object has no attribute 'metadata'` errors
-- **Solution**: Added safe metadata extraction with null checks and fallbacks
-- **Impact**: Eliminated runtime errors during query processing
+### Setting up Development Environment
+1. Fork the repository
+2. Create a feature branch
+3. Set up local environment with API keys
+4. Make changes and test thoroughly
+5. Submit a pull request
 
-### Coverage Type and Document Section
-- **Problem**: Inconsistent handling of `coverage_type` and `document_section` fields
-- **Solution**: Implemented proper null checking with empty string defaults
-- **Code Fix**:
-```python
-"coverage_type": document.metadata.get('coverage_type', "") if document.metadata.get('coverage_type') else "",
-"document_section": document.metadata.get('document_section', "") if document.metadata.get('document_section') else "",
-```
+### Code Style Guidelines
+- **Python**: Follow PEP 8, use type hints
+- **JavaScript**: Use modern ES2020+ syntax
+- **Documentation**: Comprehensive docstrings and comments
+- **Testing**: Include unit tests for new features
 
-## 🧪 Testing
-
-### Manual Testing
-```bash
-# Test upload
-curl -X POST "http://localhost:8000/upload" -F "files=@test.pdf"
-
-# Test query
-curl -X POST "http://localhost:8000/query" \
-  -H "Content-Type: application/json" \
-  -d '{"query": "test question"}'
-
-# Test health
-curl "http://localhost:8000/health"
-```
-
-### Automated Testing
-```bash
-# Run pytest (if test files exist)
-pytest tests/
-
-# Load testing
-locust -f load_test.py --host=http://localhost:8000
-```
-
-## 🧹 Maintenance
-
-### Cleanup Unnecessary Files
-```bash
-python cleanup.py
-```
-
-### Log Management
-- Logs are written to `rag_system.log`
-- Configure log rotation in production
-- Monitor error patterns and performance
-
-### Database Maintenance
-- Pinecone handles scaling automatically
-- Monitor vector count and query performance
-- Consider index optimization for large datasets
-
-## 🚧 Troubleshooting
+## 🚨 Troubleshooting
 
 ### Common Issues
 
-1. **Metadata Errors**
-   - Ensure all metadata fields have defaults
-   - Check document processing pipeline
-   - Verify chunk creation logic
+**API Key Errors:**
+- Verify all API keys are correctly set in `.env`
+- Check API key permissions and quotas
 
-2. **Upload Failures**
-   - Check file size limits
-   - Verify supported file types
-   - Review temporary directory permissions
+**Document Processing Failures:**
+- Ensure supported file formats
+- Check file size limits
+- Verify LlamaParse connectivity
 
-3. **Query Failures**
-   - Verify vector store initialization
-   - Check embedding model loading
-   - Confirm LLM API keys
+**Search Not Working:**
+- Confirm vector store initialization
+- Check embedding model download
+- Verify Pinecone index creation
 
-4. **Performance Issues**
-   - Monitor memory usage
-   - Check embedding batch sizes
-   - Review chunk sizes and overlap
+**Frontend Not Connecting:**
+- Ensure backend is running on port 8000
+- Check CORS configuration
+- Verify API endpoints are accessible
 
 ### Debug Mode
 ```bash
-# Enable debug logging
+# Enable detailed logging
 export LOG_LEVEL=DEBUG
 python app.py
 ```
 
-## 📝 Development
-
-### Contributing
-1. Fork the repository
-2. Create a feature branch
-3. Implement changes with tests
-4. Update documentation
-5. Submit pull request
-
-### Code Style
-- Follow PEP 8 guidelines
-- Use type hints
-- Add comprehensive docstrings
-- Include error handling
-
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## 🤝 Support
+## 🤝 Support & Community
 
-For support, please:
-1. Check the troubleshooting section
-2. Review the API documentation at `/docs`
-3. Check system health at `/health`
-4. Review logs in `rag_system.log`
+- **Documentation**: Check `/docs` endpoint for detailed API documentation
+- **Health Status**: Monitor system at `/health` endpoint
+- **Logs**: Review `rag_system.log` for detailed system information
+- **Issues**: Report bugs and feature requests through GitHub issues
 
 ---
 
-**Last Updated**: January 31, 2025
-**Version**: 2.0.0 (Enhanced)
-**Author**: RAG System Development Team
+**Built with ❤️ for intelligent document processing and knowledge retrieval**
+
+*Last updated: August 2025*

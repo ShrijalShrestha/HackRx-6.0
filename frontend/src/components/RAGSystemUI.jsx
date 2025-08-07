@@ -183,9 +183,11 @@ export default function RAGSystemUI() {
           />
           <Button onClick={handleQuery}>Search</Button>
         </div>
-        {queryResult && typeof queryResult === "string" ? (
+        {queryResult && typeof queryResult === "string" && (
           <p className="mt-3 text-green-500">{queryResult}</p>
-          ) : queryResult.answer && (
+        )}
+
+        {queryResult && typeof queryResult === "object" && queryResult.answer && (
           <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mt-4 mb-6">
             <h3 className="font-semibold text-blue-700 mb-2">📘 Answer:</h3>
             <p className="text-gray-800 whitespace-pre-line">
@@ -202,7 +204,7 @@ export default function RAGSystemUI() {
           </div>
         )}
 
-        {queryResult.sources?.length > 0 && (
+        {queryResult && typeof queryResult === "object" && queryResult.sources?.length > 0 && (
           <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
             <h4 className="font-semibold text-yellow-700">📚 Sources:</h4>
             <ul className="mt-2 space-y-3">
