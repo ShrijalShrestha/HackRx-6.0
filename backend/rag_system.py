@@ -108,7 +108,7 @@ class RAGSystem:
                 return False
             
             # Process new documents
-            documents = self.document_processor.load_documents_from_directory(directory_path)
+            documents = self.document_processor.load_documents(directory_path)
             
             if not documents:
                 logger.warning("No new documents to process")

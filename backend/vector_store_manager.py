@@ -185,34 +185,68 @@ class VectorStoreManager:
         """
         try:
             logger.info(f"Performing similarity search for: {query[:50]}...")
-            
+
             # Generate query embedding
             query_embedding = self.embedding_model.encode(query).tolist()
-            
-            # Query Pinecone
-            results = self.pinecone_index.query(
-                vector=query_embedding,
-                top_k=k,
-                include_metadata=True
-            )
-            
-            # Convert results to Document objects
-            documents = []
-            for match in results['matches']:
-                if match['score'] >= score_threshold:
-                    metadata = match['metadata']
-                    # Extract text from metadata
-                    text = metadata.pop('text', '')
-                    
-                    doc = Document(
-                        page_content=text,
-                        metadata=metadata
-                    )
-                    documents.append((doc, match['score']))
-            
-            logger.info(f"Found {len(documents)} results above threshold {score_threshold}")
-            return documents
-            
+
+            # Retry with backoff to allow for eventual consistency after upserts
+            attempts = 5
+            backoff = 1.0
+            last_documents: List[tuple] = []
+
+            for attempt in range(1, attempts + 1):
+                # Query Pinecone
+                results = self.pinecone_index.query(
+                    vector=query_embedding,
+                    top_k=k,
+                    include_metadata=True,
+                )
+
+                # Handle response for both dict-like and attr-like access
+                matches = []
+                try:
+                    if isinstance(results, dict):
+                        matches = results.get('matches', [])
+                    else:
+                        matches = getattr(results, 'matches', []) or []
+                except Exception:
+                    matches = []
+
+                # Convert results to Document objects
+                documents: List[tuple] = []
+                for m in matches:
+                    try:
+                        score = m.get('score') if isinstance(m, dict) else getattr(m, 'score', 0.0)
+                        if score is None:
+                            score = 0.0
+                        if float(score) < float(score_threshold):
+                            continue
+
+                        metadata = m.get('metadata') if isinstance(m, dict) else getattr(m, 'metadata', {})
+                        metadata = metadata or {}
+                        # Extract text from metadata (stored during upsert)
+                        text = metadata.pop('text', '')
+
+                        doc = Document(
+                            page_content=text,
+                            metadata=metadata,
+                        )
+                        documents.append((doc, float(score)))
+                    except Exception:
+                        continue
+
+                if documents:
+                    logger.info(f"Found {len(documents)} results above threshold {score_threshold}")
+                    return documents
+
+                last_documents = documents
+                if attempt < attempts:
+                    time.sleep(backoff)
+                    backoff *= 1.5  # exponential backoff
+
+            logger.info(f"Found 0 results above threshold {score_threshold} after {attempts} attempts")
+            return last_documents
+
         except Exception as e:
             logger.error(f"Similarity search failed: {e}")
             return []

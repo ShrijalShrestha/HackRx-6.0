@@ -50,21 +50,25 @@ class QueryProcessor:
         try:
             # Custom prompt template for better responses
             prompt_template = """
-            You are a helpful AI assistant that answers questions based on the provided context.
-            
-            Context: {context}
-            
-            Question: {question}
-            
+            You are an expert assistant trained to summarize and answer insurance policy questions accurately based only on the provided context.
+
+            Context:
+            {context}
+
+            Question:
+            {question}
+
             Instructions:
-            1. Answer the question based ONLY on the provided context
-            2. If the context doesn't contain enough information, say "I don't have enough information to answer this question"
-            3. Be concise but comprehensive
-            4. Cite specific parts of the context when possible
-            5. If there are multiple relevant pieces of information, synthesize them coherently
-            
+            1. Use only the information from the context.
+            2. Provide a clear, concise, and professional summary of the relevant policy clause.
+            3. Do not quote the document verbatim unless necessary — **paraphrase into natural, formal language**.
+            4. If multiple conditions apply, summarize them logically and cohesively.
+            5. Do not add information beyond the context.
+            6. If the answer cannot be derived from the context, reply: "I don't have enough information to answer this question."
+
             Answer:
             """
+
             
             self.prompt = PromptTemplate(
                 template=prompt_template,

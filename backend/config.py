@@ -51,7 +51,7 @@ class Config:
         # Set the environment variables
         os.environ['HF_HOME'] = cache_dir
 
-    # API Keys
+    # API Keys (LlamaCloud key optional; PyMuPDF is used for PDFs)
     LLAMA_CLOUD_API_KEY: str = os.getenv("LLAMA_CLOUD_API_KEY", "")
     GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
     PINECONE_API_KEY: str = os.getenv("PINECONE_API_KEY", "")
@@ -68,9 +68,9 @@ class Config:
     PINECONE_CLOUD: str = "aws"
     
     # Document Processing Configuration
-    CHUNK_SIZE: int = 512
-    CHUNK_OVERLAP: int = 20
-    MAX_TOKENS_PER_CHUNK: int = 384  # For better embedding quality
+    CHUNK_SIZE: int = 800
+    CHUNK_OVERLAP: int = 100
+    MAX_TOKENS_PER_CHUNK: int = 800  # For better embedding quality
     
     # Retrieval Configuration
     TOP_K_DOCUMENTS: int = 3
@@ -83,8 +83,8 @@ class Config:
     
     def _validate_environment(self) -> None:
         """Validate that all required environment variables are set."""
+        # With PyMuPDF-based parsing, LlamaCloud is optional
         required_vars = {
-            "LLAMA_CLOUD_API_KEY": self.LLAMA_CLOUD_API_KEY,
             "GOOGLE_API_KEY": self.GOOGLE_API_KEY,
             "PINECONE_API_KEY": self.PINECONE_API_KEY,
             "PINECONE_REGION": self.PINECONE_REGION,
