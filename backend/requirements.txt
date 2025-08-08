@@ -16,8 +16,7 @@ langchain-google-genai
 langchain-pinecone
 
 # Document processing
-llama-parse
-pypdf
+pymupdf
 python-docx
 unstructured
 unstructured[local-inference]
